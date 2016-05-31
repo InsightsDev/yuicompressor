@@ -1,9 +1,25 @@
-language: java
-jdk:
-    - openjdk6
+addons:
+  artifacts:
+    debug: true
+    paths:
+    - libs.zip
+    - build.zip
+    - testbuild.zip
+    target_paths: e063f7f2-07c5-4579-9d72-d12ed3a5529e
+after_failure: {}
+after_success:
+- ./df-build.sh
+cache:
+  directories:
+  - $HOME/.m2
 install:
-    - ant
-    - npm install
+- ant
+- npm install
+jdk:
+- openjdk6
+language: java
+notifications: {}
 script:
-    - ./tests/suite.sh
-    - npm test
+- ./tests/suite.sh
+- npm test
+# Modified by Insights Service at 2016-05-31 12:35:39.814951
